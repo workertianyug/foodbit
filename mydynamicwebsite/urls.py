@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', HomePage.as_view()),
     url(r'^foodform$', FoodForm.as_view()),
-    url(r'^foodlist$', FoodList.as_view())
+    url(r'^foodlist$', FoodList.as_view()),
+    # url(r'^foodlist/delete/(\d+)/$', views.delete.as_view())
 ]

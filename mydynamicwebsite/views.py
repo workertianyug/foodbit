@@ -57,6 +57,12 @@ class FoodList(View):
         context["allFood"] = FoodEvent.objects.all()[::-1]
         return render(request, 'foodlist.html', context)
 
+    def post(self, request):
+        id = request.POST.get("id")
+        foodevent = FoodEvent.objects.get(id=id)
+        foodevent.delete()
+        return HttpResponseRedirect('/foodlist')
+
 
 
 

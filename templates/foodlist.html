@@ -59,6 +59,14 @@
                     src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDBY6iWRdwPpNU42g4cgXFvpeO-sW8-ocU
                       &q={{food.location}}" allowfullscreen>
                   </iframe>
+                  <form method="post" action="/foodlist">
+                  {% csrf_token %}
+                    <input name="id" value="{{food.id}}" type="hidden">
+                    <button class="btn waves-effect waves-light" type="delete" name="action">delete
+                              <i class="material-icons right"></i>
+                          </button>
+
+                  </form>
 
                 </div>
         {% endfor %}
