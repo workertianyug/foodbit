@@ -10,6 +10,8 @@ class FoodEvent(models.Model):
     location = models.CharField(max_length=50,default="", blank=True, null=True)
     time = models.CharField(max_length=50,default="", blank=True, null=True)
     organization = models.CharField(max_length=50,default="", blank=True, null=True)
+    foodtype = models.CharField(max_length=50,default="", blank=True, null=True)
+    description = models.CharField(max_length=50,default="", blank=True, null=True)
     
     def __str__(self): 
         return self.title

@@ -1,37 +1,57 @@
-<html>
+{% load staticfiles %}
+<!DOCTYPE html>
     <head>
         <!-- Compiled and minified CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-        
-        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-        
-        <!-- Compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+        <title>Foodbit</title>
+
+        <!-- CSS  -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="{% static 'js/materialize.js' %}"></script>
+        <script src="{% static 'js/init.js' %}"></script>
                   
     </head>
     
     <body>
-        <nav>
-            <div class="nav-wrapper">
-              <a href="/" class="brand-logo">  Foodbit </a>
-              <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="foodform"> Donate Food</a></li>
-              </ul>
-            </div>
-          </nav>
+        <nav class="white" role="navigation">
+          <div class="nav-wrapper container">
+            <a id="logo-container" href="/" class="brand-logo">FoodBit</a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="foodform">Donate Food</a></li>
+            </ul>
+
+            <ul id="nav-mobile" class="side-nav">
+              <li><a href="#">Donate Food</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+          </div>
+        </nav>
           
         
         {% for food in allFood %}
             <div class="row">
-                <div class="col m8 offset-m2 s12">
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="card-title">{{ food.title }}</span>
-                            <p> Name of the provider: {{ food.name }}</p> Location of the provider: {{ food.location }}</p> Best before: {{ food.time }}</p> Organization: {{ food.organization }}</p>
-                        </div>
+                <div class="col s12 m7 offset-m2">
+                  <div class="card large">
+                    <div class="card-image">
+                      <img src="{% static '1.jpg' %}">
+                      <span class="card-title">{{food.title}}</span>
                     </div>
+                    <div class="card-content">
+                      <p>Event: {{food.title}}</p>
+                      <p>Donor's Name: {{food.name}}</p>
+                      <p>Location of the provider: {{ food.location }}</p>
+                      <p>Best before: {{ food.time }}</p>
+                      <p>Organization: {{ food.organization }}</p>
+                      <p>Food Types: {{food.foodtype}}</p>
+                      <p>Description: {{food.description}}</p>
+                      <p><a href="#"> Event Link</a></p>
+                    </div>
+                  </div>
                 </div>
-            </div>
         {% endfor %}
     </body>
 </html>
