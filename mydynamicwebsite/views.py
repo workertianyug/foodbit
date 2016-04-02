@@ -36,7 +36,8 @@ class FoodForm(View):
             image = request.POST.get("image")
         print(request.POST.get("image"))
         new_post = FoodEvent(title=title, name=name, location=location, time=time,
-             organization=organization, foodtype=foodtype, description=description, image=image)
+             organization=organization, foodtype=foodtype, description=description, image=image
+             )
         new_post.save()
 
         """foodInfo = {

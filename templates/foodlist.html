@@ -31,13 +31,7 @@
           </div>
         </nav>
         
-        <iframe
-          width="600"
-          height="450"
-          frameborder="0" style="border:0"
-          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDBY6iWRdwPpNU42g4cgXFvpeO-sW8-ocU
-            &q=Space+Needle,Seattle+WA" allowfullscreen>
-        </iframe>
+
         
         {% for food in allFood %}
             <div class="row">
@@ -56,8 +50,16 @@
                       <p>Food Types: {{food.foodtype}}</p>
                       <p>Description: {{food.description}}</p>
                       <p><a href="#"> Event Link</a></p>
-                    </div>
+                      </div>
                   </div>
+                  <iframe
+                    width="600"
+                    height="450"
+                    frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDBY6iWRdwPpNU42g4cgXFvpeO-sW8-ocU
+                      &q={{food.location}}" allowfullscreen>
+                  </iframe>
+
                 </div>
         {% endfor %}
     </body>
