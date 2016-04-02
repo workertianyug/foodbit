@@ -30,14 +30,15 @@
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
           </div>
         </nav>
-          
+        
+
         
         {% for food in allFood %}
             <div class="row">
                 <div class="col s12 m7 offset-m2">
                   <div class="card large">
                     <div class="card-image">
-                      <img src="{% static '1.jpg' %}">
+                      <img src={{food.image}}>
                       <span class="card-title">{{food.title}}</span>
                     </div>
                     <div class="card-content">
@@ -49,8 +50,16 @@
                       <p>Food Types: {{food.foodtype}}</p>
                       <p>Description: {{food.description}}</p>
                       <p><a href="#"> Event Link</a></p>
-                    </div>
+                      </div>
                   </div>
+                  <iframe
+                    width="600"
+                    height="450"
+                    frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDBY6iWRdwPpNU42g4cgXFvpeO-sW8-ocU
+                      &q={{food.location}}" allowfullscreen>
+                  </iframe>
+
                 </div>
         {% endfor %}
     </body>

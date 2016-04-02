@@ -30,8 +30,14 @@ class FoodForm(View):
         organization = request.POST.get("organization")
         foodtype = request.POST.get("foodtype")
         description = request.POST.get("description")
+        if request.POST.get("image") == "":
+            image = "http://trichilofoods.com/site/wp-content/uploads/2015/06/veggies.jpg"
+        else:
+            image = request.POST.get("image")
+        print(request.POST.get("image"))
         new_post = FoodEvent(title=title, name=name, location=location, time=time,
-             organization=organization, foodtype=foodtype, description=description)
+             organization=organization, foodtype=foodtype, description=description, image=image
+             )
         new_post.save()
 
         """foodInfo = {
