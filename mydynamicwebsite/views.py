@@ -3,30 +3,46 @@ from django.views.generic.base import View
 from django.http import HttpResponseRedirect
 
 from backend.models import *
+from django import forms
 
-
-
+class NameForm(forms.Form):
+    your_name = forms.CharField(label='Your name', max_length=100)
 
 class HomePage(View):
     def get(self, request):
+        # all_foodevents = FoodEvent.objects.all()
+        # context = {'all_foodevents': all_foodevents}
         return render(request, 'index.html')
 
 class FoodForm(View):
     def get(self, request):
-        allFood = FoodEvent.objects.all()
-        context = {'allFood': allFood}
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        all_foodevents = FoodEvent.objects.all()
+        context = {'all_foodevents': all_foodevents}
         return render(request, 'foodform.html')
 
     def post(self, request):
+        #from . import firebaseconnect
         title = request.POST.get("title")
         name = request.POST.get("name")
         location = request.POST.get("location")
         time = request.POST.get("time")
         organization = request.POST.get("organization")
+        foodtype = request.POST.get("foodtype")
+        description = request.POST.get("description")
         new_post = FoodEvent(title=title, name=name, location=location, time=time,
-            organization=organization)
+             organization=organization, foodtype=foodtype, description=description)
         new_post.save()
-        return HttpResponseRedirect("/foodform")
+
+        """foodInfo = {
+        'title': title,
+        'name': name,
+        'location': location,
+        'time': time,
+        'organization': organization
+        }
+        firebaseconnect.upload(foodInfo)"""
+        return HttpResponseRedirect('/foodlist')
         
 
 class FoodList(View):
