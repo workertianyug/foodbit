@@ -22,7 +22,7 @@ class FoodForm(View):
         return render(request, 'foodform.html')
 
     def post(self, request):
-        #from . import firebaseconnect
+        from . import firebaseconnect
         title = request.POST.get("title")
         name = request.POST.get("name")
         location = request.POST.get("location")
@@ -35,20 +35,20 @@ class FoodForm(View):
         else:
             image = request.POST.get("image")
         print(request.POST.get("image"))
-        new_post = FoodEvent(title=title, name=name, location=location, time=time,
-             organization=organization, foodtype=foodtype, description=description, image=image)
-        new_post.save()
 
-        """foodInfo = {
+        foodInfo = {
         'title': title,
         'name': name,
         'location': location,
         'time': time,
-        'organization': organization
+        'organization': organization,
+        'foodtype': foodtype,
+        'description': description
         }
-        firebaseconnect.upload(foodInfo)"""
+
+        firebaseconnect.upload(foodInfo)
         return HttpResponseRedirect('/foodlist')
-        
+
 
 class FoodList(View):
     def get(self, request):
@@ -56,13 +56,8 @@ class FoodList(View):
         context["allFood"] = FoodEvent.objects.all()[::-1]
         return render(request, 'foodlist.html', context)
 
-
-
-
-
-
-
-
-
-
-
+class deleteFood(View):
+    def post(self, request):
+        from . import firebaseconnect
+        foodId = request.foodId
+        firebaseconnect.deleteFood(foodId)
